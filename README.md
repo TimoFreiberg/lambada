@@ -1,4 +1,4 @@
-# lambada
+# lambada [![Build Status](https://travis-ci.org/Atsman/lambada.svg?branch=master)](https://travis-ci.org/Atsman/lambada)
 
 Create more passionate AWS Lambda functions using clojure.
 
