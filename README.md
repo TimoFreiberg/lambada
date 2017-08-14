@@ -4,7 +4,7 @@ Create more passionate AWS Lambda functions using clojure.
 
 Current version:
 
-[![Clojars Project](http://clojars.org/atsman/lambada/latest-version.svg)](http://clojars.org/atsman/lambada)
+[![Clojars Project](https://img.shields.io/clojars/v/lambada.svg)](https://clojars.org/lambada)
 
 ## Usage
 
