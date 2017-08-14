@@ -1,5 +1,5 @@
 (ns example.lambda
-  (:require [uswitch.lambada.core :refer [deflambdafn]]
+  (:require [lambada.core :refer [def-lambda-fn]]
             [clojure.data.json :as json]
             [clojure.java.io :as io]))
 
@@ -8,7 +8,7 @@
   (println "Got the following event: " (pr-str event))
   {:status "ok"})
 
-(deflambdafn example.lambda.MyLambdaFn
+(def-lambda-fn example.lambda.MyLambdaFn
   [in out ctx]
   (let [event (json/read (io/reader in))
         res (handle-event event)]

@@ -4,18 +4,18 @@ Create more passionate AWS Lambda functions using clojure.
 
 Current version:
 
-[![Clojars Project](http://clojars.org/uswitch/lambada/latest-version.svg)](http://clojars.org/uswitch/lambada)
+[![Clojars Project](http://clojars.org/atsman/lambada/latest-version.svg)](http://clojars.org/atsman/lambada)
 
 ## Usage
 
-You can define a Lambda handler using the `deflambdafn` macro provided
-by `uswitch.lambada.core`:
+You can define a Lambda handler using the `def-lambda-fn` macro provided
+by `lambada.core`:
 
 ```clojure
 (ns example.lambda
-  (:require [uswitch.lambada.core :refer [deflambdafn]]))
+  (:require [lambada.core :refer [def-lambda-fn]]))
 
-(deflambdafn example.lambda.MyLambdaFn
+(def-lambda-fn example.lambda.MyLambdaFn
   [in out ctx]
   (println "OMG I'm running in the cloud!!!111oneone"))
 ```
@@ -53,10 +53,10 @@ $ aws lambda invoke \
 
 ```
 
-See [example](https://github.com/uswitch/lambada/tree/master/example) for an example project.
+See [example](https://github.com/atsman/lambada/tree/master/example) for an example project.
 
 # License
 
-Copyright © 2015 Ragnar Dahlen.
+Copyright © 2017 Aleh Atsman.
 
 Distributed under the Eclipse Public License, the same as Clojure.

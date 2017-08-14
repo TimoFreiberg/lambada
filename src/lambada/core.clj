@@ -1,10 +1,20 @@
-(ns uswitch.lambada.core
+(ns lambada.core
+  (:require [clojure.spec.alpha :as s])
   (:import [com.amazonaws.services.lambda.runtime RequestStreamHandler]))
 
-(defmacro deflambdafn
+(s/def ::name symbol?)
+(s/def ::args vector?)
+(s/def ::body list?)
+(s/def ::arguments (s/cat :name ::name :args ::args :body ::body))
+
+(defn- assert-args [args]
+  (assert (s/valid? ::arguments args)
+          (s/explain ::arguments args)))
+
+(defmacro def-lambda-fn
   "Create a named class that can be invoked as a AWS Lambda function."
-  [name args & body]
-  (assert (= (count args) 3) "lambda function must have exactly three args")
+  [name args body]
+  (assert-args [name args body])
   (let [prefix (gensym)
         handleRequestMethod (symbol (str prefix "handleRequest"))]
     `(do
