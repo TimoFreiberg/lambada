@@ -24,4 +24,4 @@
         :implements [com.amazonaws.services.lambda.runtime.RequestStreamHandler])
        (defn ~handleRequestMethod
          ~(into ['this] args)
-         ~@body))))
+         ~body))))
