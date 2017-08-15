@@ -55,6 +55,26 @@ $ aws lambda invoke \
 
 See [example](https://github.com/atsman/lambada/tree/master/example) for an example project.
 
+## Startup time
+
+While using aws lambda with Clojure i noticed, that cold start of application can take up to 5 seconds. That was a big problem in my case. You can't pass jvm args and somehow tune JVM. You can only play with memory size in aws console.
+
+The only solution is to ping your function every 5 minutes to keep it warm. The question is, who should ping your function, which application, and where is it deployed. The answer - you can use Cloud Watch service and create schedule warm up event for your lambda function.
+
+Setup instraction:
+1. Open `CloudWatch Management Console`.
+2. Go to `Events`.
+3. Click `Create rule`
+4. Check Event Source as `Schedule`.
+5. In my case the default value of `Fixed rate of` was 5 minutes.
+6. Click on `Add target`.
+7. Select your lambda function.
+8. Click on `Configure details`.
+9. Give name to event.
+10. Click create rule.
+
+Congratulation. You created warm up event for your lambda function. Enjoy quick response time.
+
 # License
 
 Copyright © 2017 Aleh Atsman.
