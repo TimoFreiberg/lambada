@@ -1,6 +1,6 @@
 # lambada [![Build Status](https://travis-ci.org/Atsman/lambada.svg?branch=master)](https://travis-ci.org/Atsman/lambada)
 
-Create more passionate AWS Lambda functions using clojure.
+Use AWS Lambda in Clojure way.
 
 Current version:
 
@@ -8,8 +8,7 @@ Current version:
 
 ## Usage
 
-You can define a Lambda handler using the `def-lambda-fn` macro provided
-by `lambada.core`:
+Define a Lambda handler using the `def-lambda-fn` macro provided by `lambada.core`:
 
 ```clojure
 (ns example.lambda
@@ -17,7 +16,7 @@ by `lambada.core`:
 
 (def-lambda-fn example.lambda.MyLambdaFn
   [in out ctx]
-  (println "OMG I'm running in the cloud!!!111oneone"))
+  (println "AWS Lambda function called!"))
 ```
 
 When this namespace is AOT compiled, it will generate a class called
@@ -25,10 +24,7 @@ When this namespace is AOT compiled, it will generate a class called
 [`RequestStreamHandler`](http://docs.aws.amazon.com/lambda/latest/dg/java-handler-using-predefined-interfaces.html)
 interface using the args and body provided.
 
-Simplest way to deploy is to create an uberjar using leiningen or boot
-and then use that as the JAR you upload to AWS Lambda. Assuming you
-have an uberjar called `my-lambda-project.jar` in `target`, the
-following commands will do the job:
+Simplest way to deploy is to create an uberjar using leiningen or boot and then use that as the JAR you upload to AWS Lambda. Assuming you have an uberjar called `my-lambda-project.jar` in `target`, the following commands will do the job:
 
 ```
 $ aws lambda create-function \
