@@ -4,7 +4,7 @@
 
 (s/def ::name symbol?)
 (s/def ::args vector?)
-(s/def ::body list?)
+(s/def ::body (s/coll-of list?))
 (s/def ::arguments (s/cat :name ::name :args ::args :body ::body))
 
 (defn- assert-args [args]
@@ -13,7 +13,7 @@
 
 (defmacro def-lambda-fn
   "Create a named class that can be invoked as a AWS Lambda function."
-  [name args body]
+  [name args & body]
   (assert-args [name args body])
   (let [prefix (gensym)
         handleRequestMethod (symbol (str prefix "handleRequest"))]
@@ -24,4 +24,4 @@
         :implements [com.amazonaws.services.lambda.runtime.RequestStreamHandler])
        (defn ~handleRequestMethod
          ~(into ['this] args)
-         ~body))))
+         ~@body))))
