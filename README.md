@@ -8,13 +8,13 @@ Current version:
 
 ## Usage
 
-Define a Lambda handler using the `def-lambda-fn` macro provided by `lambada.core`:
+Define a Lambda handler using the `deflambdafn` macro provided by `lambada.core`:
 
 ```clojure
 (ns example.lambda
-  (:require [lambada.core :refer [def-lambda-fn]]))
+  (:require [lambada.core :refer [deflambdafn]]))
 
-(def-lambda-fn example.lambda.MyLambdaFn
+(deflambdafn example.lambda.MyLambdaFn
   [in out ctx]
   (println "AWS Lambda function called!"))
 ```

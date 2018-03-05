@@ -8,7 +8,7 @@
   (println "Got the following event: " (pr-str event))
   {:status "ok"})
 
-(def-lambda-fn example.lambda.MyLambdaFn
+(deflambdafn example.lambda.MyLambdaFn
   [in out ctx]
   (let [event (json/read (io/reader in))
         res (handle-event event)]

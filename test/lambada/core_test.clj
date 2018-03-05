@@ -6,12 +6,12 @@
 (def args-bad-values [nil "" 1 ()])
 (def body-bad-values [nil "" 1 []])
 
-(deftest def-lambda-fn-test
+(deftest deflambdafn-test
   (testing "should throw assert error if name is not a symbol"
     (doseq [bad-value name-bad-values]
       (is (thrown? java.lang.AssertionError
                    (macroexpand
-                    `(l/def-lambda-fn ~bad-value
+                    `(l/deflambdafn ~bad-value
                        [in out context]
                        (println "hello world")))))))
 
@@ -19,7 +19,7 @@
     (doseq [bad-value args-bad-values]
       (is (thrown? java.lang.AssertionError
                    (macroexpand
-                    `(l/def-lambda-fn org.test.lambda
+                    `(l/deflambdafn org.test.lambda
                        ~bad-value
                        (println "hello world")))))))
 
@@ -27,12 +27,12 @@
     (doseq [bad-value body-bad-values]
       (is (thrown? java.lang.AssertionError
                    (macroexpand
-                    `(l/def-lambda-fn org.test.lambda
+                    `(l/deflambdafn org.test.lambda
                        [in out context]
                        ~bad-value))))))
 
   (testing "should generate function"
     (is (macroexpand
-         `(l/def-lambda-fn org.test.lambda
+         `(l/deflambdafn org.test.lambda
             [in out context]
             ())))))
