@@ -1,5 +1,6 @@
 (ns lambada.core
-  (:import [com.amazonaws.services.lambda.runtime RequestStreamHandler]))
+  (:import [com.amazonaws.services.lambda.runtime
+            RequestStreamHandler RequestHandler]))
 
 (defmacro deflambdafn
   "Create a named class that can be invoked as a AWS Lambda function.
