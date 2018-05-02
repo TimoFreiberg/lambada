@@ -31,8 +31,16 @@
                        [in out context]
                        ~bad-value))))))
 
-  (testing "should generate function"
+  (testing "should generate function with 3 params"
     (is (macroexpand
          `(l/deflambdafn org.test.lambda
             [in out context]
-            ())))))
+            "return value"))))
+
+  (testing "should generate function with 2 params"
+    (is (macroexpand
+         `(l/deflambdafn org.test.lambda
+            [in context]
+            "return value"))))
+
+
