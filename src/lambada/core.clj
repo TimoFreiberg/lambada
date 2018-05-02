@@ -10,12 +10,15 @@
                    (= 3 (count args))))
           "Lambda handler args must be a vector of 2 or 3 elements")
   (let [prefix (gensym)
-        handleRequestMethod (symbol (str prefix "handleRequest"))]
+        handleRequestMethod (symbol (str prefix "handleRequest"))
+        aws-interface (if (= 3 (count args))
+                        com.amazonaws.services.lambda.runtime.RequestStreamHandler
+                        com.amazonaws.services.lambda.runtime.RequestHandler)]
     `(do
        (gen-class
         :name ~name
         :prefix ~prefix
-        :implements [com.amazonaws.services.lambda.runtime.RequestStreamHandler])
+        :implements [~aws-interface])
        (defn ~handleRequestMethod
          ~(into ['this] args)
          ~@body))))
