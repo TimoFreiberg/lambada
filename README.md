@@ -1,10 +1,10 @@
-# lambada [![Build Status](https://travis-ci.org/Atsman/lambada.svg?branch=master)](https://travis-ci.org/Atsman/lambada)
+# lambada 
 
 Use AWS Lambda in Clojure way.
 
 Current version:
 
-[![Clojars Project](https://img.shields.io/clojars/v/lambada.svg)](https://clojars.org/lambada)
+TODO
 
 ## Usage
 
@@ -23,6 +23,16 @@ When this namespace is AOT compiled, it will generate a class called
 `example.lambda.MyLambdaFn` that implements the AWS Lambda
 [`RequestStreamHandler`](http://docs.aws.amazon.com/lambda/latest/dg/java-handler-using-predefined-interfaces.html)
 interface using the args and body provided.
+To enable AOT compilation for the uberjar profile, see the following example:
+```clojure
+(defproject my-lambda-project "0.1.0-SNAPSHOT"
+  :description "Example lambada project."
+  :dependencies [[org.clojure/clojure "1.8.0"]
+                 [org.clojure/data.json "0.2.6"]
+                 [lambada "1.0.0"]]
+  :profiles {:uberjar {:aot :all}}
+  :uberjar-name "my-lambda-project.jar")
+```
 
 Simplest way to deploy is to create an uberjar using leiningen or boot and then use that as the JAR you upload to AWS Lambda. Assuming you have an uberjar called `my-lambda-project.jar` in `target`, the following commands will do the job:
 
@@ -73,6 +83,6 @@ Congratulation. You created warm up event for your lambda function. Enjoy quick 
 
 # License
 
-Copyright © 2017 Aleh Atsman.
+Copyright © 2017 Timo Freiberg
 
 Distributed under the Eclipse Public License, the same as Clojure.
