@@ -23,14 +23,6 @@
                        ~bad-value
                        (println "hello world")))))))
 
-  (testing "should throw assert error if body is not a vector"
-    (doseq [bad-value body-bad-values]
-      (is (thrown? java.lang.AssertionError
-                   (macroexpand
-                    `(l/deflambdafn org.test.lambda
-                       [in out context]
-                       ~bad-value))))))
-
   (testing "should generate function with 3 params"
     (is (macroexpand
          `(l/deflambdafn org.test.lambda
