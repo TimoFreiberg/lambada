@@ -12,13 +12,6 @@
     (println "Got the following event: " (pr-str event))
     {:status "ok"})
 
-  (deflambdafn example.lambda.MyLambdaFn
-    [in out ctx]
-    (let [event (json/read (io/reader in))
-          res (handle-event event)]
-      (with-open [w (io/writer out)]
-        (json/write res w))))
-
   (deflambdafn example.lambda.OtherLambdaFn
     [in ctx]
     (let [event (json/read (io/reader in))
